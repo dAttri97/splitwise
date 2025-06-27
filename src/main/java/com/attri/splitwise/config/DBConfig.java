@@ -26,13 +26,13 @@ import java.util.Properties;
 @EnableJpaRepositories
 public class DBConfig {
 
-    @Value("${spring.datasource.url:jdbc:mysql://database-1.cduoywg22ojt.ap-south-1.rds.amazonaws.com:3306/splitwise}")
+    @Value("${spring.datasource.url}")
     private String jdbcUrl;
 
-    @Value("${spring.datasource.username:admin}")
+    @Value("${spring.datasource.username}")
     private String username;
 
-    @Value("${spring.datasource.password:rdstest12345}")
+    @Value("${spring.datasource.password}")
     private String password;
 
     @Value("${spring.datasource.driver-class-name:com.mysql.cj.jdbc.Driver}")
@@ -41,7 +41,7 @@ public class DBConfig {
     @Bean("primaryDataSource")
     public DataSource primaryDataSource() {
         HikariConfig hc = new HikariConfig();
-        hc.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        hc.setDriverClassName(driverClassName);
         // Use vault configuration
         hc.setJdbcUrl(jdbcUrl);
         hc.setUsername(username);
